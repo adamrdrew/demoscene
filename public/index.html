@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="bundle.js"></script>
+</head>
+<body>
+    <a-scene renderer="antialias: false">
+        <a-assets>
+            <img id="box-texture" src="assets/textures/box.png">
+            <img id="skybox-texture" src="assets/textures/skybox3.png">
+        </a-assets>
+        <a-sky src="#skybox-texture"></a-sky>
+        <a-entity id="player-rig" position="0 1.6 0" thumbstick-movement>
+            <a-camera look-controls></a-camera>
+            <a-entity oculus-touch-controls="hand: left"></a-entity>
+            <a-entity oculus-touch-controls="hand: right"></a-entity>
+        </a-entity>
+        <a-entity namespace-list></a-entity>
+    </a-scene>
+</body>
+</html>
