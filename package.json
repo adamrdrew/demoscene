@@ -21,6 +21,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
-    "aframe": "^1.5.0"
+    "aframe": "^1.5.0",
+    "aframe-effects": "^0.9.1"
   }
 }

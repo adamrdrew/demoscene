@@ -4,18 +4,38 @@
   <script src="bundle.js"></script>
 </head>
 <body>
-    <a-scene renderer="antialias: false">
+    <a-scene srenderer="antialias: true" fog="type: linear; near: 1; far:  1000; color: #000;">
         <a-assets>
             <img id="box-texture" src="assets/textures/box.png">
-            <img id="skybox-texture" src="assets/textures/skybox3.png">
+            <img id="skybox-texture" src="assets/textures/abstract.jpg">
+            <img id="circuit-texture" src="assets/textures/circuit.png">
+            <img id="frosted-box-texture-1" src="assets/textures/frosted_1.png">
+            <img id="frosted-box-texture-2" src="assets/textures/frosted_2.png">
+            <img id="textured-glass-texture" src="assets/textures/textured_glass.png">
         </a-assets>
+        
+        <!-- Skybox and objects in the sky -->
         <a-sky src="#skybox-texture"></a-sky>
+        <a-light type="ambient" color="#ebe"></a-light> 
+        <a-entity object-field></a-entity>
+
+        <!-- Camera and controls -->
         <a-entity id="player-rig" position="0 1.6 0" thumbstick-movement>
             <a-camera look-controls></a-camera>
             <a-entity oculus-touch-controls="hand: left"></a-entity>
             <a-entity oculus-touch-controls="hand: right"></a-entity>
         </a-entity>
-        <a-entity namespace-list></a-entity>
+
+        <!-- Lists of Namespaces -->
+        <a-entity position="0 0 0" namespace-list="reserved: false;"></a-entity>
+        <a-entity position="0 0 -10" namespace-list="reserved: true;"></a-entity>
+        <a-entity position="0 0 -20" namespace-list="reserved: true; requester: addrew"></a-entity>
+
+        <!-- Ground Planes -->
+        <a-plane rotation="-90 0 0" position="0 1 0" width="100" height="100" material="shader: grid;"></a-plane>
+        <a-plane rotation="-90 0 0" position="0 -1 0" width="200" height="200" material="shader: dynamic-circuit; src: #circuit-texture; repeat: 5 5"></a-plane>
+        
+
     </a-scene>
 </body>
 </html>
