@@ -1,30 +1,23 @@
 import { registerComponent } from "aframe";
 
-registerComponent('thumbstick-movement', {
-    schema: {
-      speed: {type: 'number', default: 2}
-    },
+registerComponent('namespace-list', {
+  init: function() {
+      // Fetch data from the server
+      fetch('/api/firelink/namespace/list')
+          .then(response => response.json())
+          .then(data => {
+              // Successfully fetched data
+              this.render(data);
+          })
+          .catch(error => console.error('Error fetching data:', error));
+  },
 
-    init: function () {
-      this.velocity = new THREE.Vector3();
-      this.direction = new THREE.Vector3();
-      this.rotation = new THREE.Euler(0, 0, 0, 'YXZ');
-
-      this.el.addEventListener('thumbstickmoved', (e) => {
-          this.direction.x = e.detail.x; // Left/right movement
-          this.direction.z = e.detail.y; // Forward/backward movement
+  render: function(namespaces) {
+      namespaces.forEach((namespace, index) => {
+          // Create an a-entity for each namespace
+          const entity = document.createElement('a-entity');
+          entity.setAttribute('namespace', `data: ${JSON.stringify({ ...namespace, index })}`);
+          this.el.appendChild(entity);
       });
-    },
-
-    tick: function (time, timeDelta) {
-      const delta = (timeDelta / 1000) * this.data.speed;
-      this.rotation.y = THREE.MathUtils.degToRad(this.el.getAttribute('rotation').y);
-
-      this.velocity.x = this.direction.x * delta;
-      this.velocity.z = this.direction.z * delta;
-
-      this.velocity.applyEuler(this.rotation);
-
-      this.el.object3D.position.add(this.velocity);
-    }
-  });
+  }
+});
