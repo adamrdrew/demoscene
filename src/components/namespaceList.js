@@ -1,15 +1,13 @@
 import { registerComponent } from "aframe";
+import { stateManager } from "../stateManager/stateManager";
 
 registerComponent('namespace-list', {
   init: function() {
-      // Fetch data from the server
-      fetch('/api/firelink/namespace/list')
-          .then(response => response.json())
-          .then(data => {
-              // Successfully fetched data
-              this.render(data);
-          })
-          .catch(error => console.error('Error fetching data:', error));
+
+    stateManager.addEventListener('namespacesChanged', (event) => {
+        this.render(event.detail);
+    });
+
   },
 
   render: function(namespaces) {
