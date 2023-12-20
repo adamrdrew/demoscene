@@ -36,7 +36,8 @@ registerComponent('namespace-list', {
           // Create an a-entity for each namespace
           const entity = document.createElement('a-entity');
           entity.setAttribute('namespace', `data: ${JSON.stringify({ ...namespace, index: iteration })}`);
-          entity.setAttribute('position', { x: x, y: .5, z: z });
+          entity.setAttribute('position', { x: x, y: 3.5, z: z });
+          entity.setAttribute('animation', `property: position; to: ${x} 3.7 ${z}; dir: alternate; dur: ${1000+(index * 500)}; easing: easeInOutSine; loop: true`)
           this.el.appendChild(entity);
       
           iteration += 1;

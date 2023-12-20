@@ -4,6 +4,7 @@ import './components/namespaceList';
 import './components/namespace';
 import './components/thumbstickMovement';
 import './components/releasebox';
+import './components/sign';
 import './components/reserveNamespace';
 import './components/reflective';
 import './components/objectField';

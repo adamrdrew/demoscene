@@ -21,19 +21,22 @@
         <a-entity object-field></a-entity>
 
         <!-- Camera and controls -->
-        <a-entity id="player-rig" position="6 1.6 15" >
+        <a-entity id="player-rig" position="10 1.6 17" >
             <a-camera look-controls></a-camera>
             <a-entity thumbstick-movement="hand:right" laser-controls="hand: right" raycaster="objects: .clickable" cursor="fuse: false"></a-entity>
 
             <a-entity thumbstick-movement="hand:left" oculus-touch-controls="hand: left"></a-entity>
         </a-entity>
 
+        <!-- Ephemeral Sign -->
+        <a-entity position="10 8 0" sign="text: Ephemeral Namespaces; color: #11ffe3"></a-entity>
+
         <!-- Lists of Namespaces -->
         <a-entity position="0 0 0" namespace-list></a-entity>
         <a-entity position="0 0 -20" namespace-list="requester: addrew"></a-entity>
 
         <!-- Terminal -->
-        <a-entity position="10 0 10" reserve-namespace></a-entity>
+        <a-entity position="10 1 10" reserve-namespace></a-entity>
 
         <!-- Ground Planes -->
         <a-plane rotation="-90 0 0" position="0 1 0" width="100" height="100" material="shader: grid;"></a-plane>

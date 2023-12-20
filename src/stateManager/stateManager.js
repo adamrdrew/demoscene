@@ -34,8 +34,12 @@ class StateManager extends EventTarget {
     }
 
     releaseNamespace(namespace) {
-        fetch(`/api/firelink/namespace/release/`, {
+        fetch(`/api/firelink/namespace/release`, {
             method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 namespace: namespace,
             })
@@ -43,6 +47,27 @@ class StateManager extends EventTarget {
         .then(response => response.json())
         .then(msg => {
             this.dispatchEvent(new CustomEvent('namespaceReleased', { detail: namespace }));
+        })
+        .catch(error => {
+            new CustomEvent('error', { detail: error });
+        });
+    }
+
+    reserveNamespace(namespace) {
+        fetch(`/api/firelink/namespace/reserve`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                requester: this.state.username,
+                force: true
+            })
+        })
+        .then(response => response.json())
+        .then(msg => {
+            this.dispatchEvent(new CustomEvent('namespaceReserved', { detail: msg.namespace }));
         })
         .catch(error => {
             new CustomEvent('error', { detail: error });
