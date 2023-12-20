@@ -69,7 +69,7 @@ registerComponent('reserve-namespace', {
         this.clearEntities();
 
         //const terminal = document.createElement('a-entity');
-        this.el.setAttribute('gltf-model', '#terminal');
+        this.el.setAttribute('gltf-model', 'assets/models/console.glb');
         this.el.setAttribute('scale', '0.016 0.016 0.016');
         this.el.setAttribute('rotation', '0 0 0');
         this.el.setAttribute('material', {
@@ -104,8 +104,5 @@ registerComponent('reserve-namespace', {
         screen.setAttribute(`click-handler`);
         screen.setAttribute('class', 'clickable');
         this.el.appendChild(screen);
-        
-
-
     }
 });

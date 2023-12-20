@@ -6,8 +6,6 @@ class StateManager extends EventTarget {
             namespaces: [],
             //Used as requester when reserving namespaces
             username: "addrew",
-            //Description of a namespace the user has requested
-            description: {}
         };
     }
 
@@ -22,11 +20,12 @@ class StateManager extends EventTarget {
         });
     }
 
-    describeNamespace(namespace) {
+    fetchDescription(namespace) {
         fetch(`/api/firelink/namespace/describe/${namespace}`)
         .then(response => response.json())
-        .then(description => {
-            this.setDescription(description);
+        .then(responseJson => {
+            console.log("responseJson", responseJson);
+            this.dispatchEvent(new CustomEvent('descriptionFetched', { detail: {namespace: namespace, message: responseJson.message }}));
         })
         .catch(error => {
             new CustomEvent('error', { detail: error });
@@ -72,11 +71,6 @@ class StateManager extends EventTarget {
         .catch(error => {
             new CustomEvent('error', { detail: error });
         });
-    }
-
-    setDescription(description) {
-        this.state.description = description;
-        this.dispatchEvent(new CustomEvent('descriptionChanged', { detail: description }));
     }
 
     setNamespaces(namespaces) {
