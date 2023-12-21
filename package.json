@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "aframe": "^1.5.0",
-    "aframe-effects": "^0.9.1"
+    "aframe-effects": "^0.9.1",
+    "aframe-html-shader": "^0.2.0"
   }
 }
