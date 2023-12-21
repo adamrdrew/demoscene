@@ -28,6 +28,11 @@ I don't know what is idiomatic for A-Frame apps, I've never seen one aside from 
 
 Because I lost a day with the React experiment and another day just figuring out how to create the project and get started with A-Frame I only had like 2 or 3 days to develop this, so I was moving real fast. There's basically no error handling, and a lot of stuff is really wonky. I also didn't get to include any of the app related features (like deploys) I'd hoped. But still, it was a lot of fun and I learned a lot. I think I will try to do a VR project at home in A-Frame and see what I can do.
 
+### What I would have done differently
+I would have approached this more like game development. I started writing my A-Frame components like React or Vue components expecting reactivity and being data-first. What I should have done was use the `tick` method that runs every 60th of a second and used state machines, just like I would with a game. The code started to get complex as I added more events and state and then having to do conditional things based on different local state. I could have handled it better if I had a single state with multiple possible values and then a state machine with a big old case statement, just like I've used in game development.
+
+I also would have spent more time learning about controls. That was the hardest part for me. I think the controls here only work on Meta / Oculus devices. I wasn't able to figure out a higher level control abstraction system. 
+
 ## Running the Project
 You'll need to have [firelink-backend](https://github.com/RedHatInsights/firelink-backend) runnin on your system, as well as the Caddy dev-proxy that firelink-backend ships with. Check the firelink-backend README for info on that. You'll also need to be logged into an ephemeral cluster with oc or kubectl.
 
