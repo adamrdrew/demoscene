@@ -28,6 +28,9 @@ I don't know what is idiomatic for A-Frame apps, I've never seen one aside from 
 
 Because I lost a day with the React experiment and another day just figuring out how to create the project and get started with A-Frame I only had like 2 or 3 days to develop this, so I was moving real fast. There's basically no error handling, and a lot of stuff is really wonky. I also didn't get to include any of the app related features (like deploys) I'd hoped. But still, it was a lot of fun and I learned a lot. I think I will try to do a VR project at home in A-Frame and see what I can do.
 
+### Dev Tools
+As far as dev tools go I wrote this all in VS Code like any other javascript app. A-Frame includes an extremely useful debug mode you can access via ALT/Option - Control - I. That makes it really easy to learn your way around a scene and move stuff around and what not. I got most of my object placements right by using the inspector. I also installed and basically lived in the [Meta Immersive Web Emulator](https://github.com/meta-quest/immersive-web-emulator) - it is browser dev tools for VR apps. It emulates a headset so you don't need to constantly put one on to test. Without the A-Frame debugger and the emulator I couldn't have done this.
+
 ### What I would have done differently
 I would have approached this more like game development. I started writing my A-Frame components like React or Vue components expecting reactivity and being data-first. What I should have done was use the `tick` method that runs every 60th of a second and used state machines, just like I would with a game. The code started to get complex as I added more events and state and then having to do conditional things based on different local state. I could have handled it better if I had a single state with multiple possible values and then a state machine with a big old case statement, just like I've used in game development.
 
@@ -37,6 +40,8 @@ I also would have spent more time learning about controls. That was the hardest 
 You'll need to have [firelink-backend](https://github.com/RedHatInsights/firelink-backend) runnin on your system, as well as the Caddy dev-proxy that firelink-backend ships with. Check the firelink-backend README for info on that. You'll also need to be logged into an ephemeral cluster with oc or kubectl.
 
 Once you've got the backend and proxy going you can start this app with `npm start`. You can then access the app in your browser at `127.0.0.1:8000` - that will be the proxy which will handle routing to the backend and frontend. 
+
+Without a headset you can use WASD and mouse controls to make your way around, however you wont be able to interact. To interact you'll need VR controls; I reccomend the [Meta Immersive Web Simulator](https://github.com/meta-quest/immersive-web-emulator) plugin to get virtual controls.
 
 To use the app on your VR Headset you will need to serve the app out over HTTPS - HTTPS is a hard requirement for WebXR. So, I used `ngrok` to handle that for me during development, but feel free to do whatever works for you.
 
